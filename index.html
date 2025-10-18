@@ -1,0 +1,3306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منفذ امان فرع طوخ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        /* Animated gradient background */
+        .gradient-animation {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Offer card animations */
+        .offer-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .pulse-badge {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+        
+        /* Countdown timer */
+        .countdown {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Shine effect */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .shine-effect:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Stagger animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+        .stagger-item:nth-child(7) { animation-delay: 0.7s; }
+        .stagger-item:nth-child(8) { animation-delay: 0.8s; }
+        .stagger-item:nth-child(9) { animation-delay: 0.9s; }
+        .stagger-item:nth-child(10) { animation-delay: 1.0s; }
+        .stagger-item:nth-child(11) { animation-delay: 1.1s; }
+        .stagger-item:nth-child(12) { animation-delay: 1.2s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Logo styling - محسّن لعرض أفضل */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .store-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2563eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            background: white;
+            display: block;
+        }
+        
+        .store-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .store-logo.error {
+            display: none;
+        }
+        
+        .logo-fallback {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border: 3px solid #2563eb;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-fallback:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1e293b;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Grid layout for 3 items */
+        .offers-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .offers-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Social media buttons animation */
+        .social-btn {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .facebook-btn {
+            background: linear-gradient(135deg, #1877f2, #0c5fb8);
+        }
+        
+        .facebook-btn:hover {
+            background: linear-gradient(135deg, #0c5fb8, #0a4a9a);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #128c7e, #075e54);
+        }
+        
+        .phone-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .phone-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+        
+        .location-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+        
+        .location-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+        
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 40;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .scroll-to-top:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Arrow bounce animation */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        .scroll-to-top i {
+            animation: bounce 2s infinite;
+        }
+        
+        /* Carousel transitions */
+        .carousel-item {
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .carousel-item.hidden {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .carousel-item.active {
+            opacity: 1;
+            position: relative;
+        }
+        
+        /* Cart styles */
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .cart-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Modal styles */
+        .modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Login modal styles */
+        .login-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .login-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .password-input {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6b7280;
+            transition: color 0.3s ease;
+        }
+        
+        .password-toggle:hover {
+            color: #3b82f6;
+        }
+        
+        /* Contact section horizontal layout */
+        .contact-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .contact-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .contact-value {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        
+        /* Location info styling */
+        .location-info {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .location-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .location-info-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .location-icon-large {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* Error message animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .error-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        /* Confirmation modal styles */
+        .confirm-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .confirm-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Danger button styles */
+        .danger-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            transition: all 0.3s ease;
+        }
+        
+        .danger-btn:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        .danger-btn:disabled {
+            background: linear-gradient(135deg, #9ca3af, #6b7280);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Security badge styles */
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #78350f;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Customer info modal styles */
+        .customer-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .customer-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: #ef4444;
+        }
+        
+        /* Location button styles */
+        .location-btn-custom {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .location-btn-custom:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .location-btn-custom:disabled {
+            background: linear-gradient(135deg, #9ca3af, #6b7280);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .location-loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Category navigation bar styles */
+        .category-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 80px;
+            z-index: 20;
+            transition: all 0.3s ease;
+        }
+        
+        .category-nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-item {
+            position: relative;
+            padding: 12px 16px;
+            color: #4b5563;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 0 4px;
+        }
+        
+        .category-item:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+        }
+        
+        .category-item.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        .category-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .category-icon {
+            margin-left: 8px;
+        }
+        
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #4b5563;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mobile category menu */
+        .mobile-category-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 19;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-category-menu.open {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .mobile-category-item {
+            display: block;
+            padding: 12px 20px;
+            color: #4b5563;
+            font-weight: 500;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-category-item:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+        }
+        
+        .mobile-category-item.active {
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        
+        /* Product card styles */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        .new-price {
+            color: #ef4444;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        /* Search results section */
+        .search-results {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+        
+        .no-results i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: #d1d5db;
+        }
+        
+        /* Cart item styles */
+        .cart-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: #f3f4f6;
+            color: #2563eb;
+        }
+        
+        .quantity-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .remove-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+        
+        /* Enhanced Image Modal Styles */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .image-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            gap: 20px;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .modal-thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .modal-thumbnail.active {
+            border-color: #3b82f6;
+            opacity: 1;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-prev {
+            left: -70px;
+        }
+        
+        .modal-next {
+            right: -70px;
+        }
+        
+        .modal-product-info {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-product-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .modal-price-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-old-price {
+            font-size: 18px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+        
+        .modal-new-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ef4444;
+        }
+        
+        .modal-discount-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .modal-specifications {
+            margin-top: 24px;
+        }
+        
+        .modal-spec-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .modal-spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .modal-spec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .modal-spec-item:last-child {
+            border-bottom: none;
+        }
+        
+        .modal-spec-icon {
+            color: #3b82f6;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .modal-spec-label {
+            font-weight: 600;
+            color: #6b7280;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+        
+        .modal-spec-value {
+            color: #1f2937;
+            flex: 1;
+        }
+        
+        .modal-add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .modal-add-to-cart:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Zoom indicator */
+        .zoom-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .product-card:hover .zoom-indicator {
+            opacity: 1;
+        }
+        
+        /* Footer social icons */
+        .footer-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .footer-social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-facebook {
+            background: linear-gradient(135deg, #1877f2, #0c5fb8);
+        }
+        
+        .footer-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+        
+        .footer-instagram {
+            background: linear-gradient(135deg, #e1306c, #c13584);
+        }
+        
+        .footer-youtube {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .store-logo, .logo-fallback {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .contact-horizontal {
+                gap: 12px;
+                padding: 16px;
+            }
+            
+            .contact-item {
+                padding: 10px 16px;
+            }
+            
+            .contact-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            
+            .contact-text {
+                align-items: center;
+            }
+            
+            .contact-label {
+                display: none;
+            }
+            
+            .contact-value {
+                font-size: 13px;
+            }
+            
+            .location-info {
+                padding: 30px 20px;
+            }
+            
+            .location-icon-large {
+                font-size: 40px;
+            }
+            
+            .scroll-to-top {
+                bottom: 5rem;
+                right: 1rem;
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .desktop-categories {
+                display: none;
+            }
+            
+            .category-nav {
+                top: 70px;
+            }
+            
+            /* Modal responsive */
+            .image-modal-content {
+                flex-direction: column;
+                max-width: 100%;
+            }
+            
+            .modal-thumbnails {
+                flex-direction: row;
+                max-height: none;
+                max-width: 100%;
+                overflow-x: auto;
+                padding: 10px 0;
+            }
+            
+            .modal-thumbnail {
+                min-width: 60px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .modal-nav {
+                display: none;
+            }
+            
+            .modal-product-info {
+                max-width: 100%;
+                max-height: none;
+            }
+            
+            .modal-close {
+                top: -50px;
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 18px;
+            }
+            
+            .store-logo, .logo-fallback {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            .contact-horizontal {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .scroll-to-top {
+                bottom: 4.5rem;
+                right: 0.5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .category-nav {
+                top: 65px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-30">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="/" class="logo-container">
+                        <!-- ============ مكان تغيير اللوجو ============ -->
+                        <!-- اللوجو الأساسي -->
+                        <img 
+                            id="storeLogo"
+                            src="https://z-cdn-media.chatglm.cn/files/bbb1827e-15ff-4dcf-95e1-377b988d24a1_470202668_557034183826800_5367961336325033333_n.jpg?auth_key=1792092669-20a83696a10f474c8963f3bd1f647270-0-265d856e9c2ca05dba666584d675a73e"
+                            alt="منفذ امان فرع طوخ"
+                            class="store-logo"
+                            onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';"
+                        />
+                        <!-- اللوجو الاحتياطي -->
+                        <div id="logoFallback" class="logo-fallback" style="display: none;">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <!-- =========================================== -->
+                        <span class="logo-text">منفذ امان فرع طوخ</span>
+                    </a>
+                </div>
+
+                <!-- Search Bar - Now visible on all screen sizes -->
+                <div class="flex-1 max-w-xl mx-4">
+                    <div class="relative">
+                        <input
+                            type="search"
+                            placeholder="ابحث عن منتج..."
+                            id="searchInput"
+                            class="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-full border-transparent focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500 transition duration-300"
+                        />
+                        <button class="absolute inset-y-0 end-0 flex items-center px-4 text-gray-500 hover:text-blue-600" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Navigation Bar -->
+    <nav class="category-nav" id="categoryNav">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <!-- Desktop Categories -->
+                <div class="desktop-categories flex items-center overflow-x-auto py-2">
+                    <a href="#all" class="category-item active" data-category="all">
+                        <i class="fas fa-th-large category-icon"></i>
+                        جميع المنتجات
+                    </a>
+                    <a href="#dairy" class="category-item" data-category="dairy">
+                        <i class="fas fa-cheese category-icon"></i>
+                        ألبان
+                    </a>
+                    <a href="#canned" class="category-item" data-category="canned">
+                        <i class="fas fa-box category-icon"></i>
+                        معلبات
+                    </a>
+                    <a href="#beverages" class="category-item" data-category="beverages">
+                        <i class="fas fa-coffee category-icon"></i>
+                        مشروبات
+                    </a>
+                    <a href="#sweet" class="category-item" data-category="sweet">
+                        <i class="fas fa-cookie category-icon"></i>
+                        حلويات
+                    </a>
+                    <a href="#Juices" class="category-item" data-category="Juices">
+                        <i class="fas fa-glass-water category-icon"></i>
+                        عصائر
+                    </a>
+                    <a href="#oil" class="category-item" data-category="oil">
+                        <i class="fas fa-oil-can category-icon"></i>
+                        زيوت
+                    </a>
+                    <a href="#dairy-eggs" class="category-item" data-category="dairy-eggs">
+                        <i class="fas fa-egg category-icon"></i>
+                        ألبان وبيض
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileCategoryBtn">
+                    <i class="fas fa-th-large"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Category Menu -->
+    <div class="mobile-category-menu" id="mobileCategoryMenu">
+        <a href="#all" class="mobile-category-item active" data-category="all">
+            <i class="fas fa-th-large ml-2"></i>
+            جميع المنتجات
+        </a>
+        <a href="#dairy" class="mobile-category-item" data-category="dairy">
+            <i class="fas fa-cheese ml-2"></i>
+            ألبان
+        </a>
+        <a href="#canned" class="mobile-category-item" data-category="canned">
+            <i class="fas fa-box ml-2"></i>
+            معلبات
+        </a>
+        <a href="#beverages" class="mobile-category-item" data-category="beverages">
+            <i class="fas fa-coffee ml-2"></i>
+            مشروبات
+        </a>
+        <a href="#sweet" class="mobile-category-item" data-category="sweet">
+            <i class="fas fa-cookie ml-2"></i>
+            حلويات
+        </a>
+        <a href="#Juices" class="mobile-category-item" data-category="Juices">
+            <i class="fas fa-glass-water ml-2"></i>
+            عصائر
+        </a>
+        <a href="#oil" class="mobile-category-item" data-category="oil">
+            <i class="fas fa-oil-can ml-2"></i>
+            زيوت
+        </a>
+        <a href="#dairy-eggs" class="mobile-category-item" data-category="dairy-eggs">
+            <i class="fas fa-egg ml-2"></i>
+            ألبان وبيض
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search Results Section -->
+        <div id="searchResults" class="search-results">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-search ml-2"></i>
+                نتائج البحث: "<span id="searchTerm"></span>"
+            </h3>
+            <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Search results will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Professional Offers Section -->
+        <section id="offersSection" class="mb-16">
+            <!-- Hero Section with Featured Offer Carousel -->
+            <div class="gradient-animation rounded-3xl p-8 mb-12 text-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/20"></div>
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4 float-animation">
+                            <i class="fas fa-fire-flame-curved ml-3"></i>
+                            عروض حصرية
+                        </h1>
+                        <p class="text-xl opacity-90">خصومات محدودة لفترة وجيزة</p>
+                    </div>
+                    
+                    <!-- Featured Offer Carousel Container -->
+                    <div class="relative max-w-4xl mx-auto">
+                        <div id="featuredCarousel" class="relative">
+                            <!-- Carousel items will be inserted here by JavaScript -->
+                        </div>
+                        
+                        <!-- Carousel Indicators -->
+                        <div id="carouselIndicators" class="flex justify-center mt-6 gap-2">
+                            <!-- Indicators will be inserted here by JavaScript -->
+                        </div>
+                        
+                        <!-- Manual Navigation Buttons -->
+                        <button
+                            id="prevBtn"
+                            class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
+                            aria-label="العرض السابق"
+                        >
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button
+                            id="nextBtn"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
+                            aria-label="العرض التالي"
+                        >
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Offers Grid -->
+            <div id="offers-grid" class="grid gap-6 offers-grid-3">
+                <!-- Offer cards will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- View All Offers Button -->
+            <div class="text-center mt-12">
+                <button 
+                    id="toggleOffersBtn"
+                    class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl shine-effect"
+                >
+                    <i class="fas fa-chevron-down ml-2"></i>
+                    <span id="toggleText">عرض جميع العروض</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="productsSection" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">منتجاتنا</h2>
+            
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contact Us Section - Horizontal Layout -->
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">تواصل معنا</h2>
+                <p class="text-lg text-gray-600">نحن هنا لخدمتك! تواصل معنا عبر أي من الوسائل التالية</p>
+            </div>
+            
+            <div class="contact-horizontal">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/aman.toukh" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <div class="contact-icon facebook-btn">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">فيس بوك</span>
+                        <span class="contact-value">تابعنا على فيسبوك</span>
+                    </div>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/201009002381" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <div class="contact-icon whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">واتساب</span>
+                        <span class="contact-value">تواصل معنا</span>
+                    </div>
+                </a>
+                
+                <!-- Phone -->
+                <a href="tel:+201009002381" class="contact-item">
+                    <div class="contact-icon phone-btn">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">الهاتف</span>
+                        <span class="contact-value">اتصل بنا</span>
+                    </div>
+                </a>
+                
+                <!-- Location -->
+                <a href="#location" class="contact-item">
+                    <div class="contact-icon location-btn">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">الموقع</span>
+                        <span class="contact-value">طوخ، القليوبية</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Location Section - Without Map -->
+        <section id="location" class="mb-16">
+            <div class="location-info">
+                <div class="location-info-content text-center">
+                    <i class="fas fa-map-marker-alt location-icon-large"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">موقعنا</h2>
+                    <div class="max-w-2xl mx-auto space-y-4">
+                        <div class="flex items-center justify-center gap-3 text-xl">
+                            <i class="fas fa-store text-2xl"></i>
+                            <span class="font-semibold">فرع طوخ</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 text-lg">
+                            <i class="fas fa-map-pin text-xl"></i>
+                            <span>منفذ أمان يامصر - طوخ ميدان الحرازية - أمام معرض القليوبية</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 text-lg">
+                            <i class="fas fa-clock text-xl"></i>
+                            <span><strong>ساعات العمل:</strong> يومياً من 8:00 صباحاً - 1:00 بعد منتصف الليل</span>
+                        </div>
+                        <div class="mt-8">
+                            <p class="text-lg mb-6">تفضلوا بزيارتنا لتجربة تسوق فريدة!</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                                <a href="tel:+201009002381" class="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors inline-flex items-center gap-2">
+                                    <i class="fas fa-phone"></i>
+                                    <span>اتصل بنا</span>
+                                </a>
+                                <a href="https://wa.me/201009002381" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition-colors inline-flex items-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>واتساب</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-10 shadow-inner">
+        <div class="container mx-auto max-w-7xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between text-center sm:text-right">
+            <div class="mb-4 sm:mb-0">
+                <p class="text-sm text-gray-400">&copy; 2024 منفذ امان فرع طوخ. كل الحقوق محفوظة.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <i class="fas fa-users text-lg text-gray-400"></i>
+                <p class="text-sm font-medium">
+                    <span class="text-gray-400">عدد الزوار:</span>
+                    <span id="visitorCount" class="text-white font-bold tracking-wider mr-2">1,234</span>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Social Media Icons -->
+        <div class="container mx-auto max-w-7xl px-4 pb-6">
+            <div class="footer-social-icons">
+                <a href="https://www.facebook.com/aman.toukh" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/201009002381" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/aman.toukh" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/aman.toukh" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Button -->
+    <button
+        id="cartBtn"
+        class="fixed bottom-6 end-6 bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-300 z-40"
+        aria-label="افتح السلة"
+    >
+        <i class="fas fa-shopping-cart text-2xl"></i>
+        <span id="cartCount" class="absolute -top-1 -end-1 bg-red-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center border-2 border-white hidden">0</span>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button
+        id="scrollToTopBtn"
+        class="scroll-to-top"
+        aria-label="العودة للأعلى"
+        title="العودة لأعلى الصفحة"
+    >
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Enhanced Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="image-modal-content">
+            <div class="modal-image-container">
+                <button class="modal-close" onclick="closeImageModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="modal-nav modal-prev" onclick="navigateImage(-1)" id="modalPrev">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="modal-nav modal-next" onclick="navigateImage(1)" id="modalNext">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <img id="modalImage" src="" alt="" class="modal-image">
+            </div>
+            
+            <div class="modal-thumbnails" id="modalThumbnails">
+                <!-- Thumbnails will be inserted here -->
+            </div>
+            
+            <div class="modal-product-info">
+                <h2 class="modal-product-title" id="modalProductTitle"></h2>
+                
+                <div class="modal-price-section">
+                    <span class="modal-old-price" id="modalOldPrice"></span>
+                    <span class="modal-new-price" id="modalNewPrice"></span>
+                    <span class="modal-discount-badge" id="modalDiscount"></span>
+                </div>
+                
+                <div class="modal-specifications">
+                    <h3 class="modal-spec-title">
+                        <i class="fas fa-list-ul"></i>
+                        مواصفات المنتج
+                    </h3>
+                    <ul class="modal-spec-list" id="modalSpecList">
+                        <!-- Specifications will be inserted here -->
+                    </ul>
+                </div>
+                
+                <button class="modal-add-to-cart" id="modalAddToCart">
+                    <i class="fas fa-cart-plus"></i>
+                    أضف للسلة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartOverlay" class="cart-overlay fixed inset-0 bg-black/60 z-40"></div>
+    <div id="cartSidebar" class="cart-sidebar fixed top-0 start-0 h-full w-full max-w-md bg-gray-100 shadow-2xl z-50">
+        <div class="flex flex-col h-full">
+            <header class="flex items-center justify-between p-4 bg-white border-b-2 border-gray-200">
+                <h2 class="text-2xl font-bold text-blue-800">سلة التسوق</h2>
+                <button id="closeCartBtn" class="text-gray-500 hover:text-gray-800 transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </header>
+            <div class="flex-grow overflow-y-auto p-4">
+                <div id="cartItems" class="space-y-4">
+                    <!-- Cart items will be inserted here by JavaScript -->
+                </div>
+                <div id="emptyCart" class="text-center text-gray-500 mt-20">
+                    <i class="fas fa-shopping-basket text-5xl mb-4"></i>
+                    <p class="text-xl">سلتك فارغة حالياً.</p>
+                </div>
+            </div>
+            <div id="cartFooter" class="p-4 bg-white border-t-2 border-gray-200 hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-gray-800">الإجمالي:</span>
+                    <span id="cartTotal" class="text-2xl font-bold text-blue-600">0.00 جنيه</span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                    <i class="fas fa-credit-card ml-2"></i>
+                    إتمام الطلب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Info Modal -->
+    <div id="customerModal" class="customer-modal fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md m-4" role="dialog" aria-modal="true">
+            <div class="flex justify-between items-center p-5 border-b">
+                <h2 class="text-2xl font-bold text-blue-800">
+                    <i class="fas fa-user ml-2"></i>
+                    بيانات العميل
+                </h2>
+                <button id="closeCustomerBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <div class="mb-6">
+                    <p class="text-gray-600 mb-4">يرجى إدخال بياناتك لإتمام الطلب</p>
+                    
+                    <!-- Customer Name -->
+                    <div class="mb-4">
+                        <label for="customerName" class="block text-gray-700 font-medium mb-2 required-field">اسم العميل</label>
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="أدخل اسمك الكامل"
+                            class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                            required
+                        />
+                    </div>
+                    
+                    <!-- Customer Phone -->
+                    <div class="mb-4">
+                        <label for="customerPhone" class="block text-gray-700 font-medium mb-2 required-field">رقم الموبايل</label>
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            placeholder="أدخل رقم الموبايل"
+                            class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                            required
+                        />
+                    </div>
+                    
+                    <!-- Customer Address -->
+                    <div class="mb-4">
+                        <label for="customerAddress" class="block text-gray-700 font-medium mb-2 required-field">العنوان</label>
+                        <textarea
+                            id="customerAddress"
+                            placeholder="أدخل عنوانك بالتفصيل"
+                            rows="3"
+                            class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <!-- Customer Location (GPS) -->
+                    <div class="mb-4">
+                        <label for="customerLocation" class="block text-gray-700 font-medium mb-2">اللوكيون (GPS)</label>
+                        <div class="flex gap-2">
+                            <input
+                                type="text"
+                                id="customerLocation"
+                                placeholder="سيتم الحصول على الموقع الجغرافي تلقائياً"
+                                class="flex-1 px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                readonly
+                            />
+                            <button
+                                type="button"
+                                id="getLocationBtn"
+                                class="location-btn-custom px-4 py-3 rounded-lg font-medium flex items-center gap-2 whitespace-nowrap"
+                                onclick="getCurrentLocation()"
+                            >
+                                <i class="fas fa-location-crosshairs"></i>
+                                <span id="locationBtnText">الحصول على الموقع</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">سيتم الحصول على إحداثيات GPS الحالية للموقع</p>
+                    </div>
+                    
+                    <div id="customerErrorMessage" class="mt-2 text-red-600 text-sm hidden">
+                        <i class="fas fa-exclamation-circle ml-1"></i>
+                        <span id="customerErrorText">يرجى ملء جميع الحقول الإلزامية</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <button id="submitCustomerBtn" class="flex-1 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-paper-plane ml-2"></i>
+                        إرسال الطلب
+                    </button>
+                    <button id="cancelCustomerBtn" class="flex-1 bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">
+                        إلغاء
+                    </button>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-gray-500">
+                        <i class="fas fa-lock ml-1"></i>
+                        سيتم إرسال طلبك عبر واتساب إلى رقم 01030566078
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Data with specifications
+        const offerProductsData = [
+            {
+                id: 101, 
+                name: "2 علبة جبنة جبنتى 1/2 كجم", 
+                oldPrice: "50.00 جنيه", 
+                newPrice: "45.00 جنيه", 
+                discount: "-10%", 
+                image: "https://www2.0zz0.com/2025/10/17/17/187665959.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة بيضاء" },
+                    { label: "الوزن", value: "1 كجم (2 × 500جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "dairy", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 102, 
+                name: "عرض تونة", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/774727095.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "تونة بالزيت" },
+                    { label: "الوزن", value: "170جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "3 سنوات" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 103, 
+                name: "3 شيكولاتة كيت كات", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-60%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/699607102.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "شوكولاتة بالحليب" },
+                    { label: "الوزن", value: "41.5جم × 3" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "9 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 104, 
+                name: "2 جبنة المراعى 250جم", 
+                oldPrice: "44.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/909860008.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة بيضاء" },
+                    { label: "الوزن", value: "500جم (2 × 250جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "dairy", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 105, 
+                name: "جبنة المراعى 500جم", 
+                oldPrice: "40.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/121419350.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة بيضاء" },
+                    { label: "الوزن", value: "500جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "dairy", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 106, 
+                name: "5 كيس اندومى 70جم", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "20.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/417063067.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "نودلز سريعة التحضير" },
+                    { label: "الوزن", value: "350جم (5 × 70جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 107, 
+                name: "2 مشروب طاقة برو السعودى", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-60%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/331913161.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مشروب طاقة" },
+                    { label: "الحجم", value: "500مل × 2" },
+                    { label: "البلد", value: "السعودية" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد" }
+                ],
+                category: "beverages", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 108, 
+                name: "برطمان صلصة هاينز", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/172982086.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "صلصة طماطم" },
+                    { label: "الحجم", value: "570جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد بعد الفتح" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 109, 
+                name: "2 فول امريكانا", 
+                oldPrice: "40.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/266041538.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "فول محمر" },
+                    { label: "الوزن", value: "850جم (2 × 425جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "3 سنوات" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 110, 
+                name: "2 برطمان مربى", 
+                oldPrice: "40.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/821826847.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مربى فواكه" },
+                    { label: "الوزن", value: "450جم (2 × 225جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد بعد الفتح" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 111, 
+                name: "كيس صلصة", 
+                oldPrice: "2.50 جنيه", 
+                newPrice: "1.00 جنيه", 
+                discount: "-60%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/982594899.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "صلصة طماطم" },
+                    { label: "الوزن", value: "200جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد بعد الفتح" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 112, 
+                name: "جبنة تبارك 2.5كجم", 
+                oldPrice: "165.00 جنيه", 
+                newPrice: "155.00 جنيه", 
+                discount: "-10%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/202500856.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة بيضاء" },
+                    { label: "الوزن", value: "2.5كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "dairy", 
+                endTime: "2025-10-31"
+            }
+        ];
+
+        // Enhanced products data with specifications
+        const productsData = [
+            {
+                id: 1, 
+                name: "بلوبيف مستورد", 
+                oldPrice: "120.00 جنيه", 
+                newPrice: "85.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/16/01/248308685.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "بلوبيف" },
+                    { label: "الوزن", value: "500جم" },
+                    { label: "البلد", value: "مستورد" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 2, 
+                name: "لانشون فراخ تركى", 
+                oldPrice: "50.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/01/690424989.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "لانشون" },
+                    { label: "الوزن", value: "400جم" },
+                    { label: "البلد", value: "تركيا" },
+                    { label: "مدة الصلاحية", value: "3 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 3, 
+                name: "5 اكياس مكرونة لمتنا 400جم", 
+                oldPrice: "70.00 جنيه", 
+                newPrice: "55.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/308951675.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مكرونة" },
+                    { label: "الوزن", value: "2كجم (5 × 400جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 4, 
+                name: "بارليكو نسكافية بلاك", 
+                oldPrice: "100.00 جنيه", 
+                newPrice: "50.00 جنيه", 
+                discount: "-50%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/121211084.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "قهوة سريعة الذوبان" },
+                    { label: "الوزن", value: "200جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "beverages"
+            }, 
+            {
+                id: 5, 
+                name: "كيس توفي", 
+                oldPrice: "15.00 جنيه", 
+                newPrice: "10.00 جنيه", 
+                discount: "-35%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/620159258.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "حلوى سكرية" },
+                    { label: "الوزن", value: "200جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            }, 
+            {
+                id: 6, 
+                name: "بسكوت تيمبو 12ق", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/551544472.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "بسكويت" },
+                    { label: "الوزن", value: "480جم (12 × 40جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "9 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            }, 
+            {
+                id: 7, 
+                name: "2 عصير بشاير 1 لتر", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "45.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/813295079.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "عصير فواكه" },
+                    { label: "الحجم", value: "2 لتر" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد" }
+                ],
+                category: "Juices"
+            }, 
+            {
+                id: 8, 
+                name: "5 عصير 200جم انواع", 
+                oldPrice: "25.00 جنيه", 
+                newPrice: "20.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/02/455828581.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "عصائر متنوعة" },
+                    { label: "الحجم", value: "1 لتر (5 × 200جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "9 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد" }
+                ],
+                category: "Juices"
+            }, 
+            {
+                id: 9, 
+                name: "كسر بسكوت شاتو 500جم", 
+                oldPrice: "55.00 جنيه", 
+                newPrice: "45.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/16/03/826633794.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "بسكويت" },
+                    { label: "الوزن", value: "500جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            }, 
+            {
+                id: 10, 
+                name: "3 علبة تونة توليدو قطع", 
+                oldPrice: "120.00 جنيه", 
+                newPrice: "105.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/16/05/966710028.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "تونة بالزيت" },
+                    { label: "الوزن", value: "450جم (3 × 150جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "3 سنوات" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 11, 
+                name: "جبنة رومى بطارخ 250جم", 
+                oldPrice: "70.00 جنيه", 
+                newPrice: "50.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/16/05/935401885.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة بالبطارخ" },
+                    { label: "الوزن", value: "250جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "4 أشهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "dairy-eggs"
+            }, 
+            {
+                id: 12, 
+                name: "2 زجاجة زيت شطارة لتر", 
+                oldPrice: "135.00 جنيه", 
+                newPrice: "125.00 جنيه", 
+                discount: "-8%", 
+                image: "https://www2.0zz0.com/2025/10/16/06/641149865.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "زيت نباتي" },
+                    { label: "الحجم", value: "2 لتر" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "oil"
+            }, 
+            {
+                id: 13, 
+                name: "زيت زيتون غزه 500 جرام", 
+                oldPrice: "70.00 جنيه", 
+                newPrice: "50.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/743417126.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "زيت زيتون" },
+                    { label: "الحجم", value: "500 جرام" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "oil"
+            }, 
+                        {
+                id: 14, 
+                name: "زيت زيتون غزه 1 لتر", 
+                oldPrice: "140.00 جنيه", 
+                newPrice: "100.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/338435033.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "زيت زيتون" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "oil"
+            },
+            {
+                id: 15, 
+                name: "سمن روابى قشطة 1.5 لتر", 
+                oldPrice: "165.00 جنيه", 
+                newPrice: "155.00 جنيه", 
+                discount: "-10%", 
+                image: "https://www2.0zz0.com/2025/10/17/16/590315067.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "سمن روابى" },
+                    { label: "الحجم", value: "1.5 لتر" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "oil"
+            }, 
+            {
+                id: 16, 
+                name: "عسل نحل وزار الزراعة", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "45.00 جنيه", 
+                discount: "-10%", 
+                image: "https://www2.0zz0.com/2025/10/17/16/423658764.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "عسل نحل" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 17, 
+                name: "كاندى", 
+                oldPrice: "145.00 جنيه", 
+                newPrice: "130.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/17/16/873263726.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "كاندى" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }, 
+            {
+                id: 18, 
+                name: "سكر 1 كجم", 
+                oldPrice: "32.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-22%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/437254176.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "سكر" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 19, 
+                name: "زبدة نيوزيلاندى 1 كجم", 
+                oldPrice: "175.00 جنيه", 
+                newPrice: "125.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/758907685.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "زبدة نيوزيلاندى" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "oil"         
+            },   
+            {
+                id: 20, 
+                name: "كاندى طبق 200جم", 
+                oldPrice: "45.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-45%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/748783692.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "كاندى" },
+                    { label: "الحجم", value: "200 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            
+            },   
+            {
+                id: 21, 
+                name: "كاندى طبق 200جم", 
+                oldPrice: "45.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-45%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/748783692.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "كاندى" },
+                    { label: "الحجم", value: "200 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 22, 
+                name: "شوكلاتة ماكس تيلا 1 كجم", 
+                oldPrice: "145.00 جنيه", 
+                newPrice: "120.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/953697766.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "شوكلاتة ماكس تيلا" },
+                    { label: "الحجم", value: "1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 23, 
+                name: "3 علبة حمص بالطحينة", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "20.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/439898206.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "حمص بالطحينة" },
+                    { label: "الحجم", value: "380 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 24, 
+                name: "2 علبة تونة مفتتة", 
+                oldPrice: "65.00 جنيه", 
+                newPrice: "50.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/18/21/982543361.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "تونة مفتتة" },
+                    { label: "الحجم", value: "170 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }
+            
+        ];
+
+        // Cart functionality
+        let cart = [];
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let isSearchMode = false;
+
+        // Image modal functionality
+        let currentImageIndex = 0;
+        let currentImageList = [];
+        let currentProduct = null;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderFeaturedCarousel();
+            renderOffersGrid();
+            renderProductsGrid();
+            setupEventListeners();
+            updateCartCount();
+            loadCartFromStorage();
+        });
+
+        // Load cart from localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Render featured carousel
+        function renderFeaturedCarousel() {
+            const carousel = document.getElementById('featuredCarousel');
+            const indicators = document.getElementById('carouselIndicators');
+            
+            // Take first 3 offers for carousel
+            const featuredOffers = offerProductsData.slice(0, 3);
+            
+            carousel.innerHTML = featuredOffers.map((offer, index) => `
+                <div class="carousel-item ${index === 0 ? 'active' : 'hidden'} bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/3">
+                            <img src="${offer.image}" alt="${offer.name}" class="w-full h-48 object-cover rounded-xl cursor-pointer" onclick="openImageModal(${JSON.stringify(offer).replace(/"/g, '&quot;')}, ${offerProductsData.indexOf(offer)}, 'offer')">
+                        </div>
+                        <div class="w-full md:w-2/3 text-center md:text-right">
+                            <h3 class="text-2xl font-bold mb-2">${offer.name}</h3>
+                            <div class="flex items-center justify-center md:justify-end gap-4 mb-4">
+                                <span class="text-xl line-through opacity-70">${offer.oldPrice}</span>
+                                <span class="text-3xl font-bold">${offer.newPrice}</span>
+                                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">${offer.discount}</span>
+                            </div>
+                            <button onclick="addToCart(${offer.id}, 'offer')" class="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-cart-plus ml-2"></i>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            indicators.innerHTML = featuredOffers.map((_, index) => `
+                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors ${index === 0 ? 'bg-white' : ''}" 
+                        onclick="goToSlide(${index})"></button>
+            `).join('');
+        }
+
+        // Render offers grid
+        function renderOffersGrid() {
+            const grid = document.getElementById('offers-grid');
+            let offersToShow = offerProductsData;
+            
+            // Filter by category if not in search mode
+            if (!isSearchMode && currentCategory !== 'all') {
+                offersToShow = offerProductsData.filter(offer => offer.category === currentCategory);
+            }
+            
+            // Filter by search query if in search mode
+            if (isSearchMode && searchQuery) {
+                offersToShow = offerProductsData.filter(offer => 
+                    offer.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+            
+            grid.innerHTML = offersToShow.map(offer => `
+                <div class="offer-card bg-white rounded-xl overflow-hidden shadow-lg stagger-item">
+                    <div class="relative">
+                        <img src="${offer.image}" alt="${offer.name}" class="w-full h-48 object-cover cursor-pointer" onclick="openImageModal(${JSON.stringify(offer).replace(/"/g, '&quot;')}, ${offerProductsData.indexOf(offer)}, 'offer')">
+                        <span class="discount-badge">${offer.discount}</span>
+                        <div class="zoom-indicator">
+                            <i class="fas fa-search-plus"></i>
+                            اضغط للتكبير
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">${offer.name}</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="old-price">${offer.oldPrice}</span>
+                                <span class="new-price mr-2">${offer.newPrice}</span>
+                            </div>
+                        </div>
+                        <button onclick="addToCart(${offer.id}, 'offer')" class="add-to-cart-btn w-full justify-center">
+                            <i class="fas fa-cart-plus"></i>
+                            أضف للسلة
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render products grid
+        function renderProductsGrid() {
+            const grid = document.getElementById('productsGrid');
+            let productsToShow = productsData;
+            
+            // Filter by category if not in search mode
+            if (!isSearchMode && currentCategory !== 'all') {
+                productsToShow = productsData.filter(product => product.category === currentCategory);
+            }
+            
+            // Filter by search query if in search mode
+            if (isSearchMode && searchQuery) {
+                productsToShow = productsData.filter(product => 
+                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+            
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card">
+                    <div class="relative overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="product-image cursor-pointer" onclick="openImageModal(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${productsData.indexOf(product)}, 'product')">
+                        <span class="discount-badge">${product.discount}</span>
+                        <div class="zoom-indicator">
+                            <i class="fas fa-search-plus"></i>
+                            اضغط للتكبير
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="old-price">${product.oldPrice}</span>
+                                <span class="new-price mr-2">${product.newPrice}</span>
+                            </div>
+                        </div>
+                        <button onclick="addToCart(${product.id}, 'product')" class="add-to-cart-btn w-full justify-center">
+                            <i class="fas fa-cart-plus"></i>
+                            أضف للسلة
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open enhanced image modal
+        function openImageModal(product, index, type) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalProductTitle = document.getElementById('modalProductTitle');
+            const modalOldPrice = document.getElementById('modalOldPrice');
+            const modalNewPrice = document.getElementById('modalNewPrice');
+            const modalDiscount = document.getElementById('modalDiscount');
+            const modalSpecList = document.getElementById('modalSpecList');
+            const modalThumbnails = document.getElementById('modalThumbnails');
+            const modalAddToCart = document.getElementById('modalAddToCart');
+            
+            currentProduct = product;
+            currentImageIndex = 0;
+            
+            // Create image list with main image and additional images
+            currentImageList = [product.image, ...(product.additionalImages || [])];
+            
+            // Set product information
+            modalProductTitle.textContent = product.name;
+            modalOldPrice.textContent = product.oldPrice;
+            modalNewPrice.textContent = product.newPrice;
+            modalDiscount.textContent = product.discount;
+            
+            // Set main image
+            modalImage.src = currentImageList[0];
+            modalImage.alt = product.name;
+            
+            // Render specifications
+            if (product.specifications && product.specifications.length > 0) {
+                modalSpecList.innerHTML = product.specifications.map(spec => `
+                    <li class="modal-spec-item">
+                        <i class="fas fa-check-circle modal-spec-icon"></i>
+                        <span class="modal-spec-label">${spec.label}:</span>
+                        <span class="modal-spec-value">${spec.value}</span>
+                    </li>
+                `).join('');
+            } else {
+                modalSpecList.innerHTML = '<li class="modal-spec-item"><span class="modal-spec-value">لا توجد مواصفات إضافية</span></li>';
+            }
+            
+            // Render thumbnails
+            if (currentImageList.length > 1) {
+                modalThumbnails.innerHTML = currentImageList.map((img, idx) => `
+                    <img src="${img}" alt="صورة ${idx + 1}" 
+                         class="modal-thumbnail ${idx === 0 ? 'active' : ''}" 
+                         onclick="selectImage(${idx})">
+                `).join('');
+                modalThumbnails.style.display = 'flex';
+            } else {
+                modalThumbnails.style.display = 'none';
+            }
+            
+            // Setup add to cart button
+            modalAddToCart.onclick = function() {
+                addToCart(product.id, type);
+                closeImageModal();
+            };
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Select image from thumbnails
+        function selectImage(index) {
+            currentImageIndex = index;
+            const modalImage = document.getElementById('modalImage');
+            const thumbnails = document.querySelectorAll('.modal-thumbnail');
+            
+            modalImage.src = currentImageList[index];
+            
+            // Update active thumbnail
+            thumbnails.forEach((thumb, idx) => {
+                if (idx === index) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+            
+            // Add fade effect
+            modalImage.style.opacity = '0';
+            setTimeout(() => {
+                modalImage.style.opacity = '1';
+            }, 100);
+        }
+
+        // Close image modal
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = 'auto';
+            currentProduct = null;
+        }
+
+        // Navigate images
+        function navigateImage(direction) {
+            if (currentImageList.length <= 1) return;
+            
+            currentImageIndex += direction;
+            
+            // Handle circular navigation
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentImageList.length - 1;
+            } else if (currentImageIndex >= currentImageList.length) {
+                currentImageIndex = 0;
+            }
+            
+            selectImage(currentImageIndex);
+        }
+
+        // Update navigation buttons
+        function updateNavigationButtons() {
+            const modalPrev = document.getElementById('modalPrev');
+            const modalNext = document.getElementById('modalNext');
+            
+            // Hide navigation if only one image
+            if (currentImageList.length <= 1) {
+                modalPrev.style.display = 'none';
+                modalNext.style.display = 'none';
+            } else {
+                modalPrev.style.display = 'flex';
+                modalNext.style.display = 'flex';
+            }
+        }
+
+        // Perform search function
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchQuery = searchInput.value.toLowerCase().trim();
+            
+            if (searchQuery === '') {
+                // Clear search and show normal view
+                isSearchMode = false;
+                document.getElementById('searchResults').classList.remove('active');
+                document.getElementById('offersSection').style.display = 'block';
+                document.getElementById('productsSection').style.display = 'block';
+                renderOffersGrid();
+                renderProductsGrid();
+                return;
+            }
+            
+            // Enter search mode
+            isSearchMode = true;
+            document.getElementById('searchTerm').textContent = searchQuery;
+            document.getElementById('searchResults').classList.add('active');
+            
+            // Search in both offers and products
+            const matchingOffers = offerProductsData.filter(offer => 
+                offer.name.toLowerCase().includes(searchQuery)
+            );
+            const matchingProducts = productsData.filter(product => 
+                product.name.toLowerCase().includes(searchQuery)
+            );
+            
+            const allMatches = [...matchingOffers, ...matchingProducts];
+            
+            if (allMatches.length === 0) {
+                document.getElementById('searchResultsGrid').innerHTML = `
+                    <div class="no-results col-span-full">
+                        <i class="fas fa-search"></i>
+                        <h3 class="text-xl font-semibold mb-2">لا توجد نتائج</h3>
+                        <p>لم يتم العثور على منتجات تطابق بحثك عن "${searchQuery}"</p>
+                        <button onclick="clearSearch()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            مسح البحث
+                        </button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('searchResultsGrid').innerHTML = allMatches.map(item => `
+                    <div class="product-card">
+                        <div class="relative overflow-hidden">
+                            <img src="${item.image}" alt="${item.name}" class="product-image cursor-pointer" onclick="openImageModal(${JSON.stringify(item).replace(/"/g, '&quot;')}, ${allMatches.indexOf(item)}, '${offerProductsData.includes(item) ? 'offer' : 'product'}')">
+                            <span class="discount-badge">${item.discount}</span>
+                            <div class="zoom-indicator">
+                                <i class="fas fa-search-plus"></i>
+                                اضغط للتكبير
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">${item.name}</h3>
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <span class="old-price">${item.oldPrice}</span>
+                                    <span class="new-price mr-2">${item.newPrice}</span>
+                                </div>
+                            </div>
+                            <button onclick="addToCart(${item.id}, '${offerProductsData.includes(item) ? 'offer' : 'product'}')" class="add-to-cart-btn w-full justify-center">
+                                <i class="fas fa-cart-plus"></i>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Hide normal sections
+            document.getElementById('offersSection').style.display = 'none';
+            document.getElementById('productsSection').style.display = 'none';
+        }
+
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+            isSearchMode = false;
+            document.getElementById('searchResults').classList.remove('active');
+            document.getElementById('offersSection').style.display = 'block';
+            document.getElementById('productsSection').style.display = 'block';
+            renderOffersGrid();
+            renderProductsGrid();
+        }
+
+        // Add to cart function
+        function addToCart(productId, type) {
+            const product = type === 'offer' ? 
+                offerProductsData.find(p => p.id === productId) : 
+                productsData.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId && item.type === type);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    ...product,
+                    type: type,
+                    quantity: 1
+                });
+            }
+            
+            saveCartToStorage();
+            updateCartCount();
+            updateCartDisplay();
+            showNotification('تمت إضافة المنتج إلى السلة');
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const emptyCart = document.getElementById('emptyCart');
+            const cartFooter = document.getElementById('cartFooter');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '';
+                emptyCart.style.display = 'block';
+                cartFooter.classList.add('hidden');
+                return;
+            }
+            
+            emptyCart.style.display = 'none';
+            cartFooter.classList.remove('hidden');
+            
+            // Calculate total
+            const total = cart.reduce((sum, item) => {
+                const price = parseFloat(item.newPrice.replace(' جنيه', ''));
+                return sum + (price * item.quantity);
+            }, 0);
+            
+            cartTotal.textContent = total.toFixed(2) + ' جنيه';
+            
+            // Render cart items
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="flex gap-4">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image cursor-pointer" onclick="openImageModal(${JSON.stringify(item).replace(/"/g, '&quot;')}, 0, '${item.type}')">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">${item.name}</h4>
+                            <div class="flex items-center justify-between mt-2">
+                                <div>
+                                    <span class="old-price text-sm">${item.oldPrice}</span>
+                                    <span class="new-price">${item.newPrice}</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.type}', -1)" ${item.quantity <= 1 ? 'disabled' : ''}>
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <span class="mx-2 font-bold">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, '${item.type}', 1)">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="font-bold text-blue-600">
+                                    ${(parseFloat(item.newPrice.replace(' جنيه', '')) * item.quantity).toFixed(2)} جنيه
+                                </span>
+                                <button class="remove-btn" onclick="removeFromCart(${item.id}, '${item.type}')">
+                                    <i class="fas fa-trash ml-1"></i>
+                                    حذف
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update quantity
+        function updateQuantity(productId, type, change) {
+            const item = cart.find(item => item.id === productId && item.type === type);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeFromCart(productId, type);
+            } else {
+                saveCartToStorage();
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(productId, type) {
+            cart = cart.filter(item => !(item.id === productId && item.type === type));
+            saveCartToStorage();
+            updateCartCount();
+            updateCartDisplay();
+            showNotification('تم حذف المنتج من السلة');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-24 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Cart button
+            document.getElementById('cartBtn').addEventListener('click', function() {
+                openCart();
+            });
+            
+            // Close cart button
+            document.getElementById('closeCartBtn').addEventListener('click', function() {
+                closeCart();
+            });
+            
+            // Cart overlay
+            document.getElementById('cartOverlay').addEventListener('click', function() {
+                closeCart();
+            });
+            
+            // Checkout button
+            document.getElementById('checkoutBtn').addEventListener('click', function() {
+                openCustomerModal();
+            });
+            
+            // Customer modal buttons
+            document.getElementById('closeCustomerBtn').addEventListener('click', function() {
+                closeCustomerModal();
+            });
+            
+            document.getElementById('cancelCustomerBtn').addEventListener('click', function() {
+                closeCustomerModal();
+            });
+            
+            document.getElementById('submitCustomerBtn').addEventListener('click', function() {
+                submitOrder();
+            });
+            
+            // Image modal close on overlay click
+            document.getElementById('imageModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeImageModal();
+                }
+            });
+            
+            // Keyboard navigation for image modal
+            document.addEventListener('keydown', function(e) {
+                const modal = document.getElementById('imageModal');
+                if (modal.classList.contains('open')) {
+                    if (e.key === 'Escape') {
+                        closeImageModal();
+                    } else if (e.key === 'ArrowRight') {
+                        navigateImage(-1);
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateImage(1);
+                    }
+                }
+            });
+            
+            // Mobile category menu toggle
+            document.getElementById('mobileCategoryBtn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileCategoryMenu');
+                mobileMenu.classList.toggle('open');
+            });
+
+            // Category navigation
+            document.querySelectorAll('.category-item, .mobile-category-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Clear search when changing category
+                    clearSearch();
+                    
+                    // Remove active class from all items
+                    document.querySelectorAll('.category-item, .mobile-category-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item and its counterpart
+                    const category = this.getAttribute('data-category');
+                    document.querySelectorAll(`.category-item[data-category="${category}"], .mobile-category-item[data-category="${category}"]`).forEach(i => {
+                        i.classList.add('active');
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobileCategoryMenu').classList.remove('open');
+                    
+                    // Update current category and re-render
+                    currentCategory = category;
+                    renderOffersGrid();
+                    renderProductsGrid();
+                    
+                    // Scroll to products section
+                    document.getElementById('productsGrid').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Search functionality - multiple event listeners
+            const searchInput = document.getElementById('searchInput');
+            
+            // Search on input
+            searchInput.addEventListener('input', function(e) {
+                performSearch();
+            });
+            
+            // Search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                }
+            });
+
+            // Sticky navigation effect
+            window.addEventListener('scroll', function() {
+                const categoryNav = document.getElementById('categoryNav');
+                if (window.scrollY > 100) {
+                    categoryNav.classList.add('scrolled');
+                } else {
+                    categoryNav.classList.remove('scrolled');
+                }
+                
+                // Show/hide scroll to top button
+                const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            // Scroll to top
+            document.getElementById('scrollToTopBtn').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Carousel navigation
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            document.getElementById('prevBtn').addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                goToSlide(currentSlide);
+            });
+
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                goToSlide(currentSlide);
+            });
+
+            // Auto-rotate carousel
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                goToSlide(currentSlide);
+            }, 5000);
+        }
+
+        // Open cart
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close cart
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open customer modal
+        function openCustomerModal() {
+            if (cart.length === 0) {
+                showNotification('سلتك فارغة');
+                return;
+            }
+            
+            closeCart();
+            document.getElementById('customerModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close customer modal
+        function closeCustomerModal() {
+            document.getElementById('customerModal').classList.remove('open');
+            document.body.style.overflow = 'auto';
+            
+            // Clear form
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerAddress').value = '';
+            document.getElementById('customerLocation').value = '';
+            document.getElementById('customerErrorMessage').classList.add('hidden');
+        }
+
+        // Submit order
+        function submitOrder() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            const location = document.getElementById('customerLocation').value.trim();
+            
+            // Validation
+            if (!name || !phone || !address) {
+                document.getElementById('customerErrorMessage').classList.remove('hidden');
+                document.getElementById('customerErrorText').textContent = 'يرجى ملء جميع الحقول الإلزامية';
+                return;
+            }
+            
+            // Build order message
+            let orderMessage = `🛒 طلب جديد من متجر منفذ أمان فرع طوخ\n\n`;
+            orderMessage += `👤 اسم العميل: ${name}\n`;
+            orderMessage += `📞 رقم الهاتف: ${phone}\n`;
+            orderMessage += `📍 العنوان: ${address}\n`;
+            if (location) {
+                orderMessage += `🗺️ الموقع: ${location}\n`;
+            }
+            orderMessage += `\n📦 تفاصيل الطلب:\n`;
+            orderMessage += `─────────────────\n`;
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.newPrice.replace(' جنيه', ''));
+                const itemTotal = price * item.quantity;
+                total += itemTotal;
+                
+                orderMessage += `${index + 1}. ${item.name}\n`;
+                orderMessage += `   الكمية: ${item.quantity}\n`;
+                orderMessage += `   السعر: ${item.newPrice}\n`;
+                orderMessage += `   الإجمالي: ${itemTotal.toFixed(2)} جنيه\n\n`;
+            });
+            
+            orderMessage += `─────────────────\n`;
+            orderMessage += `💰 الإجمالي الكلي: ${total.toFixed(2)} جنيه\n`;
+            orderMessage += `\n📅 التاريخ: ${new Date().toLocaleDateString('ar-EG')}\n`;
+            orderMessage += `⏰ الوقت: ${new Date().toLocaleTimeString('ar-EG')}`;
+            
+            // Send via WhatsApp
+            const whatsappUrl = `https://wa.me/201009002381?text=${encodeURIComponent(orderMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Clear cart and close modal
+            cart = [];
+            saveCartToStorage();
+            updateCartCount();
+            updateCartDisplay();
+            closeCustomerModal();
+            
+            showNotification('تم إرسال طلبك بنجاح!');
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            const items = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('#carouselIndicators button');
+            
+            items.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.remove('hidden');
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                    item.classList.add('hidden');
+                }
+            });
+            
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('bg-white');
+                    indicator.classList.remove('bg-white/50');
+                } else {
+                    indicator.classList.remove('bg-white');
+                    indicator.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        // Get current location
+        function getCurrentLocation() {
+            const locationBtn = document.getElementById('getLocationBtn');
+            const locationInput = document.getElementById('customerLocation');
+            const btnText = document.getElementById('locationBtnText');
+            
+            if (navigator.geolocation) {
+                locationBtn.disabled = true;
+                btnText.innerHTML = '<span class="loading-spinner"></span> جاري الحصول على الموقع...';
+                
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        locationInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                        btnText.textContent = 'تم الحصول على الموقع';
+                        locationBtn.disabled = false;
+                    },
+                    function(error) {
+                        console.error('Error getting location:', error);
+                        btnText.textContent = 'فشل الحصول على الموقع';
+                        locationBtn.disabled = false;
+                        setTimeout(() => {
+                            btnText.textContent = 'الحصول على الموقع';
+                        }, 3000);
+                    }
+                );
+            } else {
+                alert('المتصفح لا يدعم تحديد الموقع الجغرافي');
+            }
+        }
+    </script>
+</body>
+</html>
