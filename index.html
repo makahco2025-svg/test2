@@ -1305,6 +1305,16 @@
             }
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0"
+  }
+}
+</script>
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
@@ -1365,9 +1375,9 @@
                         <i class="fas fa-th-large category-icon"></i>
                         جميع المنتجات
                     </a>
-                    <a href="#dairy" class="category-item" data-category="dairy">
+                    <a href="#dairy" class="category-item" data-category="meat">
                         <i class="fas fa-cheese category-icon"></i>
-                        ألبان
+                        لحوم
                     </a>
                     <a href="#canned" class="category-item" data-category="canned">
                         <i class="fas fa-box category-icon"></i>
@@ -1839,7 +1849,7 @@
                 <div class="mt-4 text-center">
                     <p class="text-xs text-gray-500">
                         <i class="fas fa-lock ml-1"></i>
-                        سيتم إرسال طلبك عبر واتساب إلى رقم 01030566078
+                        سيتم إرسال طلبك عبر واتساب إلى رقم 01009002381
                     </p>
                 </div>
             </div>
@@ -1864,7 +1874,7 @@
                     { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "dairy", 
+                category: "dairy-eggs", 
                 endTime: "2025-10-31"
             },
             {
@@ -1918,7 +1928,7 @@
                     { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "dairy", 
+                category: "dairy-eggs", 
                 endTime: "2025-10-31"
             },
             {
@@ -1936,7 +1946,7 @@
                     { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "dairy", 
+                category: "dairy-eggs", 
                 endTime: "2025-10-31"
             },
             {
@@ -2062,7 +2072,7 @@
                     { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "dairy", 
+                category: "dairy-eggs", 
                 endTime: "2025-10-31"
             }
         ];
@@ -2084,7 +2094,7 @@
                     { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "canned"
+                category: "meat"
             }, 
             {
                 id: 2, 
@@ -2101,7 +2111,7 @@
                     { label: "مدة الصلاحية", value: "3 أشهر" },
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
-                category: "canned"
+                category: "meat"
             }, 
             {
                 id: 3, 
@@ -2139,11 +2149,11 @@
             }, 
             {
                 id: 5, 
-                name: "كيس توفي", 
+                name: "كيس توفي أنواع", 
                 oldPrice: "15.00 جنيه", 
                 newPrice: "10.00 جنيه", 
                 discount: "-35%", 
-                image: "https://www2.0zz0.com/2025/10/16/02/620159258.jpg",
+                image: "https://www2.0zz0.com/2025/10/19/00/723163891.jpg",
                 additionalImages: [],
                 specifications: [
                     { label: "النوع", value: "حلوى سكرية" },
@@ -2290,7 +2300,7 @@
                 ],
                 category: "oil"
             }, 
-                        {
+            {
                 id: 14, 
                 name: "زيت زيتون غزه 1 لتر", 
                 oldPrice: "140.00 جنيه", 
@@ -2339,11 +2349,11 @@
                     { label: "مدة الصلاحية", value: "24 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "Sweet"
             }, 
             {
                 id: 17, 
-                name: "كاندى", 
+                name: "كيلو كاندى", 
                 oldPrice: "145.00 جنيه", 
                 newPrice: "130.00 جنيه", 
                 discount: "-15%", 
@@ -2356,11 +2366,11 @@
                     { label: "مدة الصلاحية", value: "24 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "Sweet"
             }, 
             {
                 id: 18, 
-                name: "سكر 1 كجم", 
+                name: "كيس سكر 1 كجم", 
                 oldPrice: "32.00 جنيه", 
                 newPrice: "25.00 جنيه", 
                 discount: "-22%", 
@@ -2407,25 +2417,25 @@
                     { label: "مدة الصلاحية", value: "12 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "Sweet"
             
             },   
             {
                 id: 21, 
-                name: "كاندى طبق 200جم", 
-                oldPrice: "45.00 جنيه", 
-                newPrice: "25.00 جنيه", 
-                discount: "-45%", 
-                image: "https://www2.0zz0.com/2025/10/18/21/748783692.jpg",
+                name: "3 جبنة دومتى اطعم 500جم", 
+                oldPrice: "125.00 جنيه", 
+                newPrice: "105.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/18/22/685145322.jpg",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "كاندى" },
-                    { label: "الحجم", value: "200 جم" },
+                    { label: "النوع", value: "جبنة دومتى اطعم" },
+                    { label: "الحجم", value: "500 جم" },
                     { label: "البلد", value: "مصر" },
                     { label: "مدة الصلاحية", value: "12 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "dairy-eggs"
             },   
             {
                 id: 22, 
@@ -2442,7 +2452,7 @@
                     { label: "مدة الصلاحية", value: "12 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "Sweet"
             },   
             {
                 id: 23, 
@@ -2477,8 +2487,415 @@
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
                 category: "canned"
-            }
-            
+            },   
+            {
+                id: 25, 
+                name: "2 مربى ميرو 500جم", 
+                oldPrice: "75.00 جنيه", 
+                newPrice: "60.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/18/22/956124296.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مربى" },
+                    { label: "الحجم", value: "500 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            },   
+            {
+                id: 26, 
+                name: "2 جبنة ديرى 250جم + علبة نستو 8 ق", 
+                oldPrice: "48.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-27%", 
+                image: "https://www2.0zz0.com/2025/10/18/22/329007457.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة ديرى" },
+                    { label: "الحجم", value: "عرض 2*250جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 27, 
+                name: "3 زجاجة كاتشب-مايونيز-مستردة", 
+                oldPrice: "55.00 جنيه", 
+                newPrice: "40.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/18/22/940634089.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "كاتشب-مايونيز-مستردة" },
+                    { label: "الحجم", value: " عرض " },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 28, 
+                name: "علبة حلاوة طحينية 700جم", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/250901830.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "حلاوة طحينية" },
+                    { label: "الحجم", value: " 700 جم " },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "Sweet"
+            },   
+            {
+                id: 29, 
+                name: "علبة جبنة ديرى مثلثات 8 قطع", 
+                oldPrice: "15.00 جنيه", 
+                newPrice: "10.00 جنيه", 
+                discount: "-35%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/914478236.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة نستو" },
+                    { label: "الحجم", value: " 8 قطع " },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 30, 
+                name: "علبة جبنة ديرى مثلثات 24 قطع", 
+                oldPrice: "45.00 جنيه", 
+                newPrice: "30.00 جنيه", 
+                discount: "-35%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/981246380.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة نستو" },
+                    { label: "الحجم", value: " 24 قطع " },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 31, 
+                name: "جبنة قريش بالتحابيش 3 كجم", 
+                oldPrice: "80.00 جنيه", 
+                newPrice: "60.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/441518777.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة قريش بالتحابيش حبة البركة وزيت الزيتون" },
+                    { label: "الحجم", value: " 3 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 32, 
+                name: "جبنة ميكس جبن كازابلانكا 3 كجم", 
+                oldPrice: "125.00 جنيه", 
+                newPrice: "110.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/184818295.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة ميكس جبن رومى مبشور على مودزريلا " },
+                    { label: "الحجم", value: " 3 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 33, 
+                name: "جينة شيدر 1 كجم", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "45.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/845739100.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة شيدر" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 34, 
+                name: "لانشون بيف 1 كجم", 
+                oldPrice: "75.00 جنيه", 
+                newPrice: "65.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/409962877.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "لانشون بيف" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "meat"
+            },   
+            {
+                id: 35, 
+                name: "اكسترا تيلا 1 كجم", 
+                oldPrice: "90.00 جنيه", 
+                newPrice: "80.00 جنيه", 
+                discount: "-12%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/184248835.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "شيكولاتة اكسترا تيلا" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "Sweet"
+            },   
+            {
+                id: 36, 
+                name: "كيس صلصة قها 500 جم", 
+                oldPrice: "20.00 جنيه", 
+                newPrice: "15.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/252927348.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "صلصة قها" },
+                    { label: "الحجم", value: " 500 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            },   
+            {
+                id: 37, 
+                name: "بسبوسة 500 جم", 
+                oldPrice: "25.00 جنيه", 
+                newPrice: "15.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/198696002.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "بسبوسة" },
+                    { label: "الحجم", value: " 500 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "Sweet"
+            },   
+            {
+                id: 38, 
+                name: "لانشون بالهنا تركى 850جم", 
+                oldPrice: "300.00 جنيه", 
+                newPrice: "75.00 جنيه", 
+                discount: "-75%", 
+                image: "https://www2.0zz0.com/2025/10/18/23/729883795.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "لانشون" },
+                    { label: "الحجم", value: " 850 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "meat"
+            },   
+            {
+                id: 39, 
+                name: "جبنة عرب لاند 500جم", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/19/00/797765533.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة عرب لاند" },
+                    { label: "الحجم", value: " 500 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 40, 
+                name: "جبنة لاهاليبو 3 كجم", 
+                oldPrice: "75.00 جنيه", 
+                newPrice: "60.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/19/00/325062248.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة لاهاليبو" },
+                    { label: "الحجم", value: " 3 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 41, 
+                name: "2 لانشون بدور 500 جم", 
+                oldPrice: "70.00 جنيه", 
+                newPrice: "50.00 جنيه", 
+                discount: "-28%", 
+                image: "https://www2.0zz0.com/2025/10/19/00/997753739.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "لانشون بدور" },
+                    { label: "الحجم", value: " 500 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "meat"
+            },   
+            {
+                id: 42, 
+                name: "مربى لاندى 1 كجم", 
+                oldPrice: "55.00 جنيه", 
+                newPrice: "40.00 جنيه", 
+                discount: "-28%", 
+                image: "https://www2.0zz0.com/2025/10/19/00/772303994.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مربى لاندى نكهات" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            },   
+            {
+                id: 43, 
+                name: "جبنة كيرى تشيز لاند 1 كجم", 
+                oldPrice: "70.00 جنيه", 
+                newPrice: "60.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/19/00/317015118.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة كيرى سادة و بسطرمة" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 44, 
+                name: "2 مربى 1 كجم", 
+                oldPrice: "120.00 جنيه", 
+                newPrice: "100.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/19/01/694083211.png",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "مربى 1+1 هدية" },
+                    { label: "الحجم", value: " 1 كجم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            },   
+            {
+                id: 45, 
+                name: "زجاجة بيبسى سينا كولا 2 لتر", 
+                oldPrice: "30.00 جنيه", 
+                newPrice: "20.00 جنيه", 
+                discount: "-35%", 
+                image: "https://www2.0zz0.com/2025/10/19/01/711914382.jpeg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "زجاجة بيبسى سينا كولا" },
+                    { label: "الحجم", value: " 2 لتر" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "beverages"
+            },   
+            {
+                id: 46, 
+                name: "3 علبة جبنة لامدى 250جم", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/19/01/707537985.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "جبنة لامدى" },
+                    { label: "الحجم", value: " 250 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "dairy-eggs"
+            },   
+            {
+                id: 47, 
+                name: "علبة بسكوت فودة 12 ق", 
+                oldPrice: "24.00 جنيه", 
+                newPrice: "10.00 جنيه", 
+                discount: "-60%", 
+                image: "https://www2.0zz0.com/2025/10/19/01/562756232.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "بسكوت فودة" },
+                    { label: "الحجم", value: " 12 قطعة" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "sweet"
+            },   
+            {
+                id: 48, 
+                name: "تونة دولفين 200جم", 
+                oldPrice: "42.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-15%", 
+                image: "https://www2.0zz0.com/2025/10/19/01/578163761.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "تونة دولفين" },
+                    { label: "الحجم", value: " 200 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned"
+            }         
         ];
 
         // Cart functionality
@@ -3284,7 +3701,7 @@
                     function(position) {
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
-                        locationInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                        locationInput.value = `https://www.google.com/maps?q=${lat},${lng}`;
                         btnText.textContent = 'تم الحصول على الموقع';
                         locationBtn.disabled = false;
                     },
