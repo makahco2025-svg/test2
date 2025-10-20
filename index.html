@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -1542,7 +1543,7 @@
             
             <div class="contact-horizontal">
                 <!-- Facebook -->
-                <a href="https://www.facebook.com/aman.toukh" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <a href="https://www.facebook.com/profile.php?id=100085606703584" target="_blank" rel="noopener noreferrer" class="contact-item">
                     <div class="contact-icon facebook-btn">
                         <i class="fab fa-facebook-f"></i>
                     </div>
@@ -1598,10 +1599,12 @@
                             <i class="fas fa-store text-2xl"></i>
                             <span class="font-semibold">فرع طوخ</span>
                         </div>
-                        <div class="flex items-center justify-center gap-3 text-lg">
-                            <i class="fas fa-map-pin text-xl"></i>
-                            <span>منفذ أمان يامصر - طوخ ميدان الحرازية - أمام معرض القليوبية</span>
-                        </div>
+                        <a href="https://maps.app.goo.gl/Xga6EZw6e9638S2b9" target="_blank" rel="noopener noreferrer" class="inline-block hover:underline transition-all duration-300">
+                            <div class="flex items-center justify-center gap-3 text-lg">
+                                <i class="fas fa-map-pin text-xl"></i>
+                                <span>منفذ أمان يامصر - طوخ ميدان الحرازية - أمام معرض القليوبية</span>
+                            </div>
+                        </a>
                         <div class="flex items-center justify-center gap-3 text-lg">
                             <i class="fas fa-clock text-xl"></i>
                             <span><strong>ساعات العمل:</strong> يومياً من 8:00 صباحاً - 1:00 بعد منتصف الليل</span>
@@ -1613,7 +1616,7 @@
                                     <i class="fas fa-phone"></i>
                                     <span>اتصل بنا</span>
                                 </a>
-                                <a href="https://wa.me/201030566078" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition-colors inline-flex items-center gap-2">
+                                <a href="https://wa.me/201009002381" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition-colors inline-flex items-center gap-2">
                                     <i class="fab fa-whatsapp"></i>
                                     <span>واتساب</span>
                                 </a>
@@ -1643,7 +1646,7 @@
         <!-- Social Media Icons -->
         <div class="container mx-auto max-w-7xl px-4 pb-6">
             <div class="footer-social-icons">
-                <a href="https://www.facebook.com/aman.toukh" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-facebook">
+                <a href="https://www.facebook.com/profile.php?id=100085606703584" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="https://wa.me/201009002381" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-whatsapp">
@@ -1849,7 +1852,7 @@
                 <div class="mt-4 text-center">
                     <p class="text-xs text-gray-500">
                         <i class="fas fa-lock ml-1"></i>
-                        سيتم إرسال طلبك عبر واتساب إلى رقم 01030566078
+                        سيتم إرسال طلبك عبر واتساب إلى رقم 201009002381
                     </p>
                 </div>
             </div>
@@ -1861,6 +1864,42 @@
         const offerProductsData = [
             {
                 id: 101, 
+                name: "5 كيس اندومى 70جم", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "20.00 جنيه", 
+                discount: "-40%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/417063067.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "نودلز سريعة التحضير" },
+                    { label: "الوزن", value: "350جم (5 × 70جم)" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 102, 
+                name: "برطمان صلصة هاينز", 
+                oldPrice: "35.00 جنيه", 
+                newPrice: "25.00 جنيه", 
+                discount: "-30%", 
+                image: "https://www2.0zz0.com/2025/10/16/00/172982086.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "صلصة طماطم" },
+                    { label: "الحجم", value: "570جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "التخزين", value: "يحفظ في مكان بارد بعد الفتح" }
+                ],
+                category: "canned", 
+                endTime: "2025-10-31"
+            },
+            {
+                id: 103, 
                 name: "2 علبة جبنة جبنتى 1/2 كجم", 
                 oldPrice: "50.00 جنيه", 
                 newPrice: "45.00 جنيه", 
@@ -1875,42 +1914,6 @@
                     { label: "التخزين", value: "يحفظ في الثلاجة" }
                 ],
                 category: "dairy-eggs", 
-                endTime: "2025-10-31"
-            },
-            {
-                id: 102, 
-                name: "عرض تونة", 
-                oldPrice: "35.00 جنيه", 
-                newPrice: "25.00 جنيه", 
-                discount: "-30%", 
-                image: "https://www2.0zz0.com/2025/10/16/00/774727095.jpg",
-                additionalImages: [],
-                specifications: [
-                    { label: "النوع", value: "تونة بالزيت" },
-                    { label: "الوزن", value: "170جم" },
-                    { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "3 سنوات" },
-                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
-                ],
-                category: "canned", 
-                endTime: "2025-10-31"
-            },
-            {
-                id: 103, 
-                name: "3 شيكولاتة كيت كات", 
-                oldPrice: "60.00 جنيه", 
-                newPrice: "25.00 جنيه", 
-                discount: "-60%", 
-                image: "https://www2.0zz0.com/2025/10/16/00/699607102.jpg",
-                additionalImages: [],
-                specifications: [
-                    { label: "النوع", value: "شوكولاتة بالحليب" },
-                    { label: "الوزن", value: "41.5جم × 3" },
-                    { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "9 أشهر" },
-                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
-                ],
-                category: "sweet", 
                 endTime: "2025-10-31"
             },
             {
@@ -1951,60 +1954,6 @@
             },
             {
                 id: 106, 
-                name: "5 كيس اندومى 70جم", 
-                oldPrice: "35.00 جنيه", 
-                newPrice: "20.00 جنيه", 
-                discount: "-40%", 
-                image: "https://www2.0zz0.com/2025/10/16/00/417063067.jpg",
-                additionalImages: [],
-                specifications: [
-                    { label: "النوع", value: "نودلز سريعة التحضير" },
-                    { label: "الوزن", value: "350جم (5 × 70جم)" },
-                    { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "12 شهر" },
-                    { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
-                ],
-                category: "canned", 
-                endTime: "2025-10-31"
-            },
-            {
-                id: 107, 
-                name: "2 مشروب طاقة برو السعودى", 
-                oldPrice: "60.00 جنيه", 
-                newPrice: "25.00 جنيه", 
-                discount: "-60%", 
-                image: "https://www2.0zz0.com/2025/10/16/00/331913161.jpg",
-                additionalImages: [],
-                specifications: [
-                    { label: "النوع", value: "مشروب طاقة" },
-                    { label: "الحجم", value: "500مل × 2" },
-                    { label: "البلد", value: "السعودية" },
-                    { label: "مدة الصلاحية", value: "6 أشهر" },
-                    { label: "التخزين", value: "يحفظ في مكان بارد" }
-                ],
-                category: "beverages", 
-                endTime: "2025-10-31"
-            },
-            {
-                id: 108, 
-                name: "برطمان صلصة هاينز", 
-                oldPrice: "35.00 جنيه", 
-                newPrice: "25.00 جنيه", 
-                discount: "-30%", 
-                image: "https://www2.0zz0.com/2025/10/16/00/172982086.jpg",
-                additionalImages: [],
-                specifications: [
-                    { label: "النوع", value: "صلصة طماطم" },
-                    { label: "الحجم", value: "570جم" },
-                    { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "24 شهر" },
-                    { label: "التخزين", value: "يحفظ في مكان بارد بعد الفتح" }
-                ],
-                category: "canned", 
-                endTime: "2025-10-31"
-            },
-            {
-                id: 109, 
                 name: "2 فول امريكانا", 
                 oldPrice: "40.00 جنيه", 
                 newPrice: "25.00 جنيه", 
@@ -2022,7 +1971,7 @@
                 endTime: "2025-10-31"
             },
             {
-                id: 110, 
+                id: 107, 
                 name: "2 برطمان مربى", 
                 oldPrice: "40.00 جنيه", 
                 newPrice: "35.00 جنيه", 
@@ -2040,7 +1989,7 @@
                 endTime: "2025-10-31"
             },
             {
-                id: 111, 
+                id: 108, 
                 name: "كيس صلصة", 
                 oldPrice: "2.50 جنيه", 
                 newPrice: "1.00 جنيه", 
@@ -2058,7 +2007,7 @@
                 endTime: "2025-10-31"
             },
             {
-                id: 112, 
+                id: 109, 
                 name: "جبنة تبارك 2.5كجم", 
                 oldPrice: "165.00 جنيه", 
                 newPrice: "155.00 جنيه", 
@@ -2074,7 +2023,26 @@
                 ],
                 category: "dairy-eggs", 
                 endTime: "2025-10-31"
+            },
+            {
+                id: 110, 
+                name: "ام على قشطة او مكسرات", 
+                oldPrice: "40.00 جنيه", 
+                newPrice: "35.00 جنيه", 
+                discount: "-10%", 
+                image: "https://www2.0zz0.com/2025/10/20/00/557320325.jpg",
+                additionalImages: [],
+                specifications: [
+                    { label: "النوع", value: "ام على" },
+                    { label: "الوزن", value: "160 جم" },
+                    { label: "البلد", value: "مصر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
+                    { label: "التخزين", value: "يحفظ في الثلاجة" }
+                ],
+                category: "sweet", 
+                endTime: "2025-10-31"
             }
+
         ];
 
         // Enhanced products data with specifications
@@ -2166,20 +2134,20 @@
             }, 
             {
                 id: 6, 
-                name: "بسكوت تيمبو 12ق", 
-                oldPrice: "60.00 جنيه", 
-                newPrice: "35.00 جنيه", 
-                discount: "-40%", 
-                image: "https://www2.0zz0.com/2025/10/16/02/551544472.jpg",
+                name: "صلصة حلو الشام", 
+                oldPrice: "20.00 جنيه", 
+                newPrice: "15.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/20/00/202975245.png",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "بسكويت" },
-                    { label: "الوزن", value: "480جم (12 × 40جم)" },
+                    { label: "النوع", value: "صلصة" },
+                    { label: "الوزن", value: "300 جم" },
                     { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "9 أشهر" },
+                    { label: "مدة الصلاحية", value: "12 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "sweet"
+                category: "canned"
             }, 
             {
                 id: 7, 
@@ -2268,20 +2236,20 @@
             }, 
             {
                 id: 12, 
-                name: "2 زجاجة زيت شطارة لتر", 
-                oldPrice: "135.00 جنيه", 
-                newPrice: "125.00 جنيه", 
-                discount: "-8%", 
-                image: "https://www2.0zz0.com/2025/10/16/06/641149865.jpg",
+                name: "قشطة فريش 500جم", 
+                oldPrice: "75.00 جنيه", 
+                newPrice: "60.00 جنيه", 
+                discount: "-20%", 
+                image: "https://www2.0zz0.com/2025/10/19/23/419294033.jpg",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "زيت نباتي" },
-                    { label: "الحجم", value: "2 لتر" },
+                    { label: "النوع", value: "قشطة فريش" },
+                    { label: "الحجم", value: "500 جم" },
                     { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "مدة الصلاحية", value: "3 أشهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "oil"
+                category: "dairy-eggs"
             }, 
             {
                 id: 13, 
@@ -2353,20 +2321,20 @@
             }, 
             {
                 id: 17, 
-                name: "كيلو كاندى", 
-                oldPrice: "145.00 جنيه", 
-                newPrice: "130.00 جنيه", 
-                discount: "-15%", 
-                image: "https://www2.0zz0.com/2025/10/17/16/873263726.jpg",
+                name: "لانشون فراخ 500جم", 
+                oldPrice: "60.00 جنيه", 
+                newPrice: "40.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/19/23/113983814.jpg",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "كاندى" },
-                    { label: "الحجم", value: "1 كجم" },
+                    { label: "النوع", value: "لانشون" },
+                    { label: "الحجم", value: "500 جم" },
                     { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "24 شهر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "Sweet"
+                category: "meat"
             }, 
             {
                 id: 18, 
@@ -2424,8 +2392,8 @@
                 id: 21, 
                 name: "3 جبنة دومتى اطعم 500جم", 
                 oldPrice: "125.00 جنيه", 
-                newPrice: "105.00 جنيه", 
-                discount: "-15%", 
+                newPrice: "100.00 جنيه", 
+                discount: "-20%", 
                 image: "https://www2.0zz0.com/2025/10/18/22/685145322.jpg",
                 additionalImages: [],
                 specifications: [
@@ -2711,20 +2679,20 @@
             },   
             {
                 id: 38, 
-                name: "لانشون بالهنا تركى 850جم", 
-                oldPrice: "300.00 جنيه", 
-                newPrice: "75.00 جنيه", 
-                discount: "-75%", 
-                image: "https://www2.0zz0.com/2025/10/18/23/729883795.jpg",
+                name: "كيس لبن بشاير 500جم", 
+                oldPrice: "22.00 جنيه", 
+                newPrice: "17.00 جنيه", 
+                discount: "-25%", 
+                image: "https://www2.0zz0.com/2025/10/19/23/683273771.jpeg",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "لانشون" },
-                    { label: "الحجم", value: " 850 جم" },
+                    { label: "النوع", value: "كيس لبن بشاير" },
+                    { label: "الحجم", value: " 500 جم" },
                     { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "18 شهر" },
+                    { label: "مدة الصلاحية", value: "6 أشهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "meat"
+                category: "dairy-eggs"
             },   
             {
                 id: 39, 
@@ -2830,17 +2798,17 @@
             },   
             {
                 id: 45, 
-                name: "زجاجة بيبسى سينا كولا 2 لتر", 
+                name: "مربى ميرو 1 كجم", 
                 oldPrice: "30.00 جنيه", 
                 newPrice: "20.00 جنيه", 
                 discount: "-35%", 
-                image: "https://www2.0zz0.com/2025/10/19/01/711914382.jpeg",
+                image: "https://www2.0zz0.com/2025/10/19/23/629397563.png",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "زجاجة بيبسى سينا كولا" },
-                    { label: "الحجم", value: " 2 لتر" },
+                    { label: "النوع", value: "مربى ميرو" },
+                    { label: "الحجم", value: " 1 كجم" },
                     { label: "البلد", value: "مصر" },
-                    { label: "مدة الصلاحية", value: "6 أشهر" },
+                    { label: "مدة الصلاحية", value: "12 أشهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
                 category: "beverages"
@@ -2881,20 +2849,20 @@
             },   
             {
                 id: 48, 
-                name: "تونة دولفين 200جم", 
-                oldPrice: "42.00 جنيه", 
-                newPrice: "35.00 جنيه", 
-                discount: "-15%", 
-                image: "https://www2.0zz0.com/2025/10/19/01/578163761.jpg",
+                name: "زيت حلوة 5 لتر", 
+                oldPrice: "325.00 جنيه", 
+                newPrice: "310.00 جنيه", 
+                discount: "-5%", 
+                image: "https://www2.0zz0.com/2025/10/19/23/591250887.jpg",
                 additionalImages: [],
                 specifications: [
-                    { label: "النوع", value: "تونة دولفين" },
-                    { label: "الحجم", value: " 200 جم" },
+                    { label: "النوع", value: "زيت حلوة" },
+                    { label: "الحجم", value: " 5 لتر" },
                     { label: "البلد", value: "مصر" },
                     { label: "مدة الصلاحية", value: "18 شهر" },
                     { label: "التخزين", value: "يحفظ في مكان جاف وبارد" }
                 ],
-                category: "canned"
+                category: "oil"
             }         
         ];
 
@@ -3721,4 +3689,3 @@
     </script>
 </body>
 </html>
-
